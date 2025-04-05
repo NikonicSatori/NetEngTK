@@ -1,0 +1,62 @@
+version: '3.7'
+
+services:
+
+  web:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    restart: always
+
+  syslog:
+    image: balabit/syslog-ng:latest
+    ports:
+      - "514:514/udp"
+    restart: always
+
+  dns:
+    image: sameersbn/bind:latest
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+    environment:
+      - BIND_USER=root
+    restart: always
+
+  speedtest:
+    image: ghcr.io/librespeed/speedtest:latest
+    ports:
+      - "8080:80"
+    restart: always
+
+  ftp:
+    image: fauria/vsftpd
+    ports:
+      - "21:21"
+    environment:
+      - FTP_USER=user
+      - FTP_PASS=pass
+      - PASV_MIN_PORT=21100
+      - PASV_MAX_PORT=21110
+    restart: always
+
+  snmp:
+    image: really/snmpd
+    ports:
+      - "161:161/udp"
+    environment:
+      - SNMP_COMMUNITY=public
+    restart: always
+
+  vpn:
+    image: hwdsl2/ipsec-vpn-server
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - VPN_IPSEC_PSK=your_ipsec_psk
+      - VPN_USER=vpnuser
+      - VPN_PASSWORD=vpnpass
+    ports:
+      - "500:500/udp"
+      - "4500:4500/udp"
+    restart: always
