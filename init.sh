@@ -4,7 +4,7 @@ FILENAME=$(basename "$0")
 echo "$FILENAME: init.sh: SCRIPT START"
 
 # Update system and install tools
-echo > "$FILENAME: Update system and install tools"
+echo "$FILENAME: Update system and install tools"
 timeout 300 yum update -y || echo "$FILENAME: yum update timed out"
 timeout 300 yum install -y yum-utils curl git || echo "$FILENAME: yum install yum-utils curl git timed out"
 
@@ -49,3 +49,5 @@ sudo systemctl restart docker
 echo "$FILENAME: Next, user should run docker compose up -d"
 
 echo "$FILENAME: init.sh: SCRIPT FINISH"
+
+exit 0
