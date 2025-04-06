@@ -44,9 +44,21 @@ echo "$FILENAME: Curl docker-compose.yml raw from github"
 cd /home/ec2-user/NetEngTK || { echo "$FILENAME: cd to NetEngTK failed"; exit 1; }
 timeout 300 curl -O https://raw.githubusercontent.com/NikonicSatori/NetEngTK/refs/heads/main/docker-compose.yml || \
     echo "$FILENAME: curl docker-compose.yml raw from github timed out"
-echo "$FILENAME: Completed curl docker-compose.yml raw from github"
+echo "$FILENAME: Downloaded docker-compose.yml raw from github"
 
-echo "$FILENAME: Next, user should run docker compose up -d"
 
-echo "$FILENAME: init.sh: SCRIPT FINISH"
+echo "$FILENAME: Starting docker compose services"
+
+docker-compose up -d || {
+    echo "$FILENAME: docker-compose up failed, trying 'docker compose up -d'"
+    docker compose up -d || {
+        echo "$FILENAME: both 'docker-compose' and 'docker compose' failed"
+        exit 1
+    }
+}
+echo "$FILENAME: docker compose up -d completed successfully"
+# Optional: log running containers
+docker ps -a
+
+echo "INIT SCRIPT FINISH"
 exit 0
