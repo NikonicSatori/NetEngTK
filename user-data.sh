@@ -17,3 +17,5 @@ echo "$FILENAME: Run init.sh"
 ./init.sh
 
 echo "$FILENAME: user-data.sh: SCRIPT FINISH"
+
+exit 0
