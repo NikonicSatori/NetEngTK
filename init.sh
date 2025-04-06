@@ -1,6 +1,5 @@
 #!/bin/bash
 exec > >(tee -a /var/log/init.log) 2>&1
-
 FILENAME=$("$0")
 
 echo > "$FILENAME: Update system and install tools"
