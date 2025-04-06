@@ -41,7 +41,7 @@ sudo systemctl restart docker
 echo "$FILENAME: Docker and Compose installed successfully"
 
 echo "$FILENAME: Curl docker-compose.yml raw from github"
-cd /home/ec2-user/NetEngTK
+cd /home/ec2-user/NetEngTK || { echo "$FILENAME: cd to NetEngTK failed"; exit 1; }
 timeout 300 curl -O https://raw.githubusercontent.com/NikonicSatori/NetEngTK/refs/heads/main/docker-compose.yml || \
     echo "$FILENAME: curl docker-compose.yml raw from github timed out"
 echo "$FILENAME: Completed curl docker-compose.yml raw from github"
