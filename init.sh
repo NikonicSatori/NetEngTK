@@ -1,6 +1,7 @@
 #!/bin/bash
 exec > >(tee -a /var/log/init.log) 2>&1
 FILENAME=$("$0")
+echo "$FILENAME: init.sh: SCRIPT START"
 
 echo > "$FILENAME: Update system and install tools"
 
@@ -43,3 +44,5 @@ echo "$FILENAME: Restart docker"
 sudo systemctl restart docker
 
 echo "$FILENAME: docker compose up -d"
+
+echo "$FILENAME: init.sh: SCRIPT FINISH"
