@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 # User Data. Specify during EC2 instance creation. This code will run once on initial boot.
 
 echo "Create NetEngTK directory"
