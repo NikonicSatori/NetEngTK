@@ -1,14 +1,16 @@
 #!/bin/bash
 # User Data. Specify during EC2 instance creation. This code will run once on initial boot.
+exec > >(tee -a /var/log/init.log) 2>&1
+FILENAME=$("$0")
 
-echo "Create NetEngTK directory"
+echo "$FILENAME: Create NetEngTK directory"
 mkdir /home/ec2-user/NetEngTK && cd /home/ec2-user/NetEngTK
 
-echo "Fetch init.sh"
+echo "$FILENAME: Fetch init.sh"
 curl -O https://raw.githubusercontent.com/NikonicSatori/NetEngTK/refs/heads/main/init.sh
 chmod +x init.sh
 
-echo "Run init.sh"
+echo "$FILENAME: Run init.sh"
 ./init.sh
 
-echo "user-data.sh completed!"
+echo "$FILENAME: user-data.sh completed!"
