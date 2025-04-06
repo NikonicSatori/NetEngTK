@@ -35,7 +35,7 @@ After boot, verify it's working:
 curl http://localhost          # Nginx
 docker ps                     # See running containers
 docker compose logs           # Check logs
-
+```
 ---
 
 🛡 Security Note
