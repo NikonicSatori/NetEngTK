@@ -52,7 +52,7 @@ echo "$FILENAME: Starting docker compose services"
 sudo docker compose up -d || { echo "$FILENAME: docker compose up -d failed' }
 echo "$FILENAME: docker compose up -d completed successfully"
 # Optional: log running containers
-docker ps -a
+sudo docker ps -a
 
 echo "INIT SCRIPT FINISH"
 exit 0
