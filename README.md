@@ -38,34 +38,26 @@ docker compose logs           # Check logs
 ```
 ---
 
-🛡 Security Note
+## 🛡 Security Note
 This environment is exposed to the internet by default. For security:
-
-Limit your EC2 inbound rules
-
-Consider binding ports to 127.0.0.1
-
-Rotate passwords and secrets
+* Limit your EC2 inbound rules
+* Consider binding ports to 127.0.0.1
+* Rotate passwords and secrets
 
 ---
 
-📁 Files
-init.sh — Installer script for the environment
-
-user-data.sh — Bootstrap script for EC2 (runs init.sh)
-
-docker-compose.yml — Defines all container services
+## 📁 Files
+* init.sh — Installer script for the environment
+* user-data.sh — Bootstrap script for EC2 (runs init.sh)
+* docker-compose.yml — Defines all container services
 
 ---
 
-🧪 Contributions
+## 🧪 Contributions
 PRs are welcome — especially for adding health checks, CLI tools, or routing logic!
-
----
-
-📜 License
-MIT
-
----
-
 Let me know if you want to add badges (Docker Hub pulls, GitHub actions, etc.), a diagram of the network, or quick testing commands!
+
+---
+
+## 📜 License
+MIT
