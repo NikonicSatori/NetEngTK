@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 echo "Update system and install tools"
 
