@@ -49,13 +49,7 @@ echo "$FILENAME: Downloaded docker-compose.yml raw from github"
 
 echo "$FILENAME: Starting docker compose services"
 
-docker-compose up -d || {
-    echo "$FILENAME: docker-compose up failed, trying 'docker compose up -d'"
-    docker compose up -d || {
-        echo "$FILENAME: both 'docker-compose' and 'docker compose' failed"
-        exit 1
-    }
-}
+sudo docker compose up -d || { echo "$FILENAME: docker compose up -d failed' }
 echo "$FILENAME: docker compose up -d completed successfully"
 # Optional: log running containers
 docker ps -a
