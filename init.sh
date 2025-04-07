@@ -35,10 +35,6 @@ docker-compose --version
 # Docker daemon configuration
 echo "$FILENAME: Disable iptables in /etc/docker/daemon.json"
 echo '{ "iptables": false }' | sudo tee /etc/docker/daemon.json
-
-# Remove DROP rule from DOCKER chain if it exists
-echo "$FILENAME: Removed DROP rule from DOCKER chain (if present)."
-iptables -C DOCKER -j DROP 2>/dev/null && iptables -D DOCKER -j DROP
 echo "$FILENAME: Restart Docker"
 sudo systemctl restart docker
 
@@ -50,9 +46,11 @@ timeout 300 curl -O https://raw.githubusercontent.com/NikonicSatori/NetEngTK/ref
     echo "$FILENAME: curl docker-compose.yml raw from github timed out"
 echo "$FILENAME: Downloaded docker-compose.yml raw from github"
 
+# Remove DROP rule from DOCKER chain if it exists
+echo "$FILENAME: Removed DROP rule from DOCKER chain (if present)."
+iptables -C DOCKER -j DROP 2>/dev/null && iptables -D DOCKER -j DROP
 
 echo "$FILENAME: Starting docker compose services"
-
 sudo docker compose up -d || { echo "$FILENAME: docker compose up -d failed"; exit 1; }
 echo "$FILENAME: docker compose up -d completed successfully"
 # Optional: log running containers
