@@ -28,7 +28,7 @@ services:
     image: ghcr.io/librespeed/speedtest:latest
     container_name: speedtest-host
     ports:
-      - "50880:80"      # mirrored
+      - "50880:8080"      # mirrored
     restart: always
 
   ftp:
