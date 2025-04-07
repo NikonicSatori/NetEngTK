@@ -50,13 +50,13 @@ This environment is exposed to the internet by default. For security:
 * init.sh — Installer script for the environment
 * user-data.sh — Bootstrap script for EC2 (runs init.sh)
 * docker-compose.yml — Defines all container services. The Docker Compose stack contains a:
-*    nginx web server
-*    syslog-ng log collector
-*    bind DNS server
-*    librespeed speed test server
-*    vsftpd FTP service
-*    snmpd SNMP agent
-*    IPSec VPN server
+   - nginx web server
+   - syslog-ng log collector
+   - bind DNS server
+   - librespeed speed test server
+   - vsftpd FTP service
+   - snmpd SNMP agent
+   - IPSec VPN server
 
 ---
 
