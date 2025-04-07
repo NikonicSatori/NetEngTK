@@ -35,6 +35,10 @@ docker-compose --version
 # Docker daemon configuration
 echo "$FILENAME: Disable iptables in /etc/docker/daemon.json"
 echo '{ "iptables": false }' | sudo tee /etc/docker/daemon.json
+
+# Remove DROP rule from DOCKER chain if it exists
+echo "$FILENAME: Removed DROP rule from DOCKER chain (if present)."
+iptables -C DOCKER -j DROP 2>/dev/null && iptables -D DOCKER -j DROP
 echo "$FILENAME: Restart Docker"
 sudo systemctl restart docker
 
