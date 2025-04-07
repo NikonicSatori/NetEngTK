@@ -4,7 +4,6 @@ services:
     image: nginx:latest
     container_name: web-host
     ports:
-      - "80:80"        # original
       - "50080:80"     # mirrored
     restart: always
 
