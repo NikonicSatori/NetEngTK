@@ -4,21 +4,25 @@ services:
     image: nginx:latest
     container_name: web-host
     ports:
-      - "50080:80"  # HTTP
+      - "80:80"        # original
+      - "50080:80"     # mirrored
     restart: always
 
   syslog:
     image: balabit/syslog-ng:latest
     container_name: syslog-host
     ports:
-      - "50514:514/udp"  # Syslog
+      - "514:514/udp"       # original
+      - "50514:514/udp"     # mirrored
     restart: always
 
   dns:
     image: sameersbn/bind:latest
     container_name: dns-host
     ports:
-      - "50053:53/udp"   # DNS
+      - "53:53/udp"         # original
+      - "53:53/tcp"
+      - "50053:53/udp"      # mirrored
       - "50053:53/tcp"
     environment:
       - BIND_USER=root
@@ -28,15 +32,17 @@ services:
     image: ghcr.io/librespeed/speedtest:latest
     container_name: speedtest-host
     ports:
-      - "50880:80"  # Speedtest via HTTP on 80 → 50880
+      - "80:80"         # original
+      - "50880:80"      # mirrored
     restart: always
 
   ftp:
     image: fauria/vsftpd
     container_name: ftp-host
     ports:
-      - "50021:21"        # FTP control
-      - "21100-21110:21100-21110"  # Passive data ports
+      - "21:21"                        # original control
+      - "50021:21"                     # mirrored control
+      - "21100-21110:21100-21110"     # passive data ports (same both sides)
     environment:
       - FTP_USER=user
       - FTP_PASS=pass
@@ -48,7 +54,8 @@ services:
     image: really/snmpd
     container_name: snmp-host
     ports:
-      - "50161:161/udp"  # SNMP
+      - "161:161/udp"       # original
+      - "50161:161/udp"     # mirrored
     environment:
       - SNMP_COMMUNITY=public
     restart: always
@@ -63,6 +70,6 @@ services:
       - VPN_USER=vpnuser
       - VPN_PASSWORD=vpnpass
     ports:
-      - "500:500/udp"     # Keep standard IPsec ports
+      - "500:500/udp"       # IPsec
       - "4500:4500/udp"
     restart: always
