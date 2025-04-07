@@ -47,8 +47,8 @@ timeout 300 curl -O https://raw.githubusercontent.com/NikonicSatori/NetEngTK/ref
 echo "$FILENAME: Downloaded docker-compose.yml raw from github"
 
 # Remove DROP rule from DOCKER chain if it exists
-echo "$FILENAME: Removed DROP rule from DOCKER chain (if present)."
-iptables -C DOCKER -j DROP 2>/dev/null && iptables -D DOCKER -j DROP
+echo "$FILENAME: Removed DROP rule from DOCKER chain"
+iptables -D DOCKER ! -i docker0 -o docker0 -j DROP
 
 echo "$FILENAME: Starting docker compose services"
 sudo docker compose up -d || { echo "$FILENAME: docker compose up -d failed"; exit 1; }
