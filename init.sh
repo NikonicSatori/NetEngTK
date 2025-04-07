@@ -6,7 +6,7 @@ echo "$FILENAME: init.sh: SCRIPT START"
 # Update system and install tools
 echo "$FILENAME: Update system and install tools"
 timeout 300 yum update -y || echo "$FILENAME: yum update timed out"
-timeout 300 yum install -y yum-utils curl git bind-utils ftp net-snmp-utils || echo "$FILENAME: yum install tools timed out"
+timeout 300 yum install -y yum-utils curl git bind-utils ftp net-snmp-utils tcpdump || echo "$FILENAME: yum install tools timed out"
 
 # Install Docker
 echo "$FILENAME: Install Docker"
