@@ -4,18 +4,21 @@ services:
 
   web:
     image: nginx:latest
+    container_name: web-host
     ports:
       - "80:80"
     restart: always
 
   syslog:
     image: balabit/syslog-ng:latest
+    container_name: syslog-host
     ports:
       - "514:514/udp"
     restart: always
 
   dns:
     image: sameersbn/bind:latest
+    container_name: dns-host
     ports:
       - "53:53/udp"
       - "53:53/tcp"
@@ -25,12 +28,14 @@ services:
 
   speedtest:
     image: ghcr.io/librespeed/speedtest:latest
+    container_name: speedtest-host
     ports:
       - "8080:80"
     restart: always
 
   ftp:
     image: fauria/vsftpd
+    container_name: ftp-host
     ports:
       - "21:21"
     environment:
@@ -42,6 +47,8 @@ services:
 
   snmp:
     image: really/snmpd
+    container_name: snmp-host
+    network_mode: host
     ports:
       - "161:161/udp"
     environment:
@@ -50,6 +57,7 @@ services:
 
   vpn:
     image: hwdsl2/ipsec-vpn-server
+    container_name: vpn-host
     cap_add:
       - NET_ADMIN
     environment:
