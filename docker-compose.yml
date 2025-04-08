@@ -66,3 +66,6 @@ services:
       - "500:500/udp"       # IPsec
       - "4500:4500/udp"
     restart: always
+
+    dns:
+      - 8.8.8.8
