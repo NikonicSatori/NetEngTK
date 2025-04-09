@@ -47,12 +47,12 @@ timeout 300 curl -O https://raw.githubusercontent.com/NikonicSatori/NetEngTK/ref
 echo "$FILENAME: Downloaded docker-compose.yml raw from github"
 
 # Allow traffic between public interface and Docker bridge
-iptables -I DOCKER -i eth0 -o br-5d398a9dde3e -j ACCEPT
-iptables -I DOCKER -i br-5d398a9dde3e -o eth0 -j ACCEPT
+#iptables -I DOCKER -i eth0 -o br-c1ba7e3c3316 -j ACCEPT
+#iptables -I DOCKER -i br-c1ba7e3c3316 -o eth0 -j ACCEPT
 
 # Can remove this '-D' command if the following commented line does not exist on EC2 startup.
 # -A DOCKER ! -i docker0 -o docker0 -j DROP
-iptables -D DOCKER ! -i docker0 -o docker0 -j DROP
+#iptables -D DOCKER ! -i docker0 -o docker0 -j DROP
 
 
 echo "$FILENAME: Starting docker compose services"
