@@ -44,14 +44,14 @@ services:
       - PASV_MAX_PORT=21110
     restart: always
 
-  snmp:
-    image: really/snmpd
-    container_name: snmp-host
-    ports:
-      - "50161:161/udp"     # mirrored
-    environment:
-      - SNMP_COMMUNITY=public
-    restart: always
+  # snmp:
+  #   image: really/snmpd
+  #   container_name: snmp-host
+  #   ports:
+  #     - "50161:161/udp"     # mirrored
+  #   environment:
+  #     - SNMP_COMMUNITY=public
+  #   restart: always
 
   vpn:
     image: hwdsl2/ipsec-vpn-server
